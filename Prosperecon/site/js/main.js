@@ -12,106 +12,18 @@ hamburger.addEventListener('click', () => {
 });
 
 document.querySelectorAll('.nav__link').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('nav--open');
-  });
+  link.addEventListener('click', () => nav.classList.remove('nav--open'));
 });
 
-// STICKY HEADER
+// STICKY HEADER shadow
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   header.style.boxShadow = window.scrollY > 10
-    ? '0 2px 24px rgba(0,0,0,.4)'
-    : '0 2px 16px rgba(0,0,0,.25)';
+    ? '0 2px 20px rgba(0,0,0,.08)'
+    : 'none';
 });
 
-// COTAS CAROUSEL
-const carousel = document.getElementById('cotasCarousel');
-const prevBtn = document.getElementById('carouselPrev');
-const nextBtn = document.getElementById('carouselNext');
-const cardWidth = () => {
-  const card = carousel.querySelector('.cota-card');
-  if (!card) return 0;
-  return card.offsetWidth + 20;
-};
-
-prevBtn.addEventListener('click', () => {
-  carousel.scrollBy({ left: -cardWidth() * 2, behavior: 'smooth' });
-});
-nextBtn.addEventListener('click', () => {
-  carousel.scrollBy({ left: cardWidth() * 2, behavior: 'smooth' });
-});
-
-// COTAS FILTER
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.cota-card').forEach(card => {
-      const show = filter === 'all' || card.dataset.type === filter;
-      card.style.display = show ? '' : 'none';
-    });
-    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-  });
-});
-
-// HERO OPP TABS
-document.querySelectorAll('.opp-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.opp-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
-
-// DEPOIMENTOS CAROUSEL
-let currentDep = 0;
-const deps = document.querySelectorAll('.depoimento');
-const dots = document.querySelectorAll('.dep-dot');
-
-function showDep(idx) {
-  deps.forEach(d => d.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
-  deps[idx].classList.add('active');
-  dots[idx].classList.add('active');
-  currentDep = idx;
-}
-
-dots.forEach(dot => {
-  dot.addEventListener('click', () => showDep(parseInt(dot.dataset.idx)));
-});
-
-setInterval(() => showDep((currentDep + 1) % deps.length), 5000);
-
-// LEAD FORM — redirect to WhatsApp
-document.getElementById('leadForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const nome = this.nome.value.trim();
-  const whatsapp = this.whatsapp.value.trim();
-  const interesse = this.interesse.value;
-  const labels = {
-    'cota-contemplada': 'Comprar Cota Contemplada',
-    'consorcio-novo': 'Consórcio Não Contemplado',
-    'vender': 'Vender meu Consórcio',
-    'investir': 'Consórcio para Investir',
-  };
-  const msg = `Olá! Sou ${nome}, meu WhatsApp é ${whatsapp} e tenho interesse em: ${labels[interesse] || interesse}.`;
-  window.open(`https://wa.me/5511940466739?text=${encodeURIComponent(msg)}`, '_blank');
-});
-
-// PHONE MASK
-const phoneInput = document.getElementById('phoneInput');
-if (phoneInput) {
-  phoneInput.addEventListener('input', function () {
-    let v = this.value.replace(/\D/g, '').slice(0, 11);
-    if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
-    else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
-    else if (v.length > 0) v = `(${v}`;
-    this.value = v;
-  });
-}
-
-// SMOOTH SCROLL for anchor links
+// SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const target = document.querySelector(link.getAttribute('href'));
@@ -121,3 +33,40 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 });
+
+// COUNTER ANIMATION
+const counters = document.querySelectorAll('.counter');
+let countersStarted = false;
+
+function animateCounters() {
+  if (countersStarted) return;
+  countersStarted = true;
+  counters.forEach(counter => {
+    const target = parseInt(counter.dataset.target);
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = Math.floor(target * ease);
+      if (progress < 1) requestAnimationFrame(update);
+      else counter.textContent = target;
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+if (counters.length > 0) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  counters.forEach(c => observer.observe(c));
+}
