@@ -1,0 +1,39 @@
+<svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder: mapa do Brasil com rede de conexões douradas -->
+  <!-- Para usar no hero, trocar o bloco .hero__counters por:
+       <div class="hero__visual">
+         <img src="images/hero-mapa-placeholder.svg" alt="Rede Prosperecon" class="hero__map-img">
+       </div>
+       E adicionar no CSS:
+       .hero__map-img { width: 100%; max-width: 460px; }
+  -->
+  <path d="M200 20c-80 0-150 50-170 120-10 30-5 65 10 95 20 45 60 80 100 110 15 10 35 25 60 30 25-5 45-20 60-30 40-30 80-65 100-110 15-30 20-65 10-95C350 70 280 20 200 20z" stroke="#C8973E" stroke-width="1" fill="none" opacity=".3"/>
+  <circle cx="180" cy="140" r="3" fill="#C8973E"/><circle cx="220" cy="160" r="3" fill="#C8973E"/>
+  <circle cx="250" cy="200" r="3" fill="#C8973E"/><circle cx="160" cy="220" r="3" fill="#C8973E"/>
+  <circle cx="200" cy="280" r="3" fill="#C8973E"/><circle cx="240" cy="240" r="3" fill="#C8973E"/>
+  <circle cx="280" cy="180" r="3" fill="#C8973E"/><circle cx="140" cy="180" r="3" fill="#C8973E"/>
+  <circle cx="300" cy="220" r="3" fill="#C8973E"/><circle cx="170" cy="260" r="3" fill="#C8973E"/>
+  <circle cx="230" cy="300" r="3" fill="#C8973E"/><circle cx="190" cy="200" r="4" fill="#C8973E"/>
+  <circle cx="260" cy="260" r="3" fill="#C8973E"/><circle cx="210" cy="120" r="3" fill="#C8973E"/>
+  <circle cx="150" cy="150" r="3" fill="#C8973E"/><circle cx="270" cy="150" r="3" fill="#C8973E"/>
+  <line x1="180" y1="140" x2="220" y2="160" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="220" y1="160" x2="250" y2="200" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="250" y1="200" x2="240" y2="240" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="160" y1="220" x2="200" y2="280" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="190" y1="200" x2="240" y2="240" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="190" y1="200" x2="160" y2="220" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="280" y1="180" x2="300" y2="220" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="140" y1="180" x2="180" y2="140" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="140" y1="180" x2="160" y2="220" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="210" y1="120" x2="270" y2="150" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="210" y1="120" x2="180" y2="140" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="270" y1="150" x2="280" y2="180" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="150" y1="150" x2="180" y2="140" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="170" y1="260" x2="200" y2="280" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="230" y1="300" x2="200" y2="280" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="260" y1="260" x2="240" y2="240" stroke="#C8973E" stroke-width=".5" opacity=".5"/>
+  <line x1="220" y1="160" x2="280" y2="180" stroke="#C8973E" stroke-width=".5" opacity=".4"/>
+  <line x1="250" y1="200" x2="300" y2="220" stroke="#C8973E" stroke-width=".5" opacity=".4"/>
+  <line x1="190" y1="200" x2="220" y2="160" stroke="#C8973E" stroke-width=".5" opacity=".4"/>
+  <line x1="260" y1="260" x2="230" y2="300" stroke="#C8973E" stroke-width=".5" opacity=".4"/>
+</svg>
