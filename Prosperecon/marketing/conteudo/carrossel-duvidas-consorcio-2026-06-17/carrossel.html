@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A1F3C;
+    --red:    #D93545;
+    --white:  #FFFFFF;
+    --cream:  #F2F2F2;
+    --muted:  rgba(255,255,255,0.38);
+    --font:   'Montserrat', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 20px;
+  }
+
+  .slide {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 100px 100px;
+  }
+
+  .wm {
+    position: absolute;
+    bottom: -20px;
+    right: 40px;
+    font-family: var(--font);
+    font-weight: 900;
+    font-size: 420px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 44px 70px 0;
+    z-index: 10;
+  }
+  .bar-logo-text {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .counter {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    opacity: 0.45;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 70px 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .handle {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .kicker {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  .rule {
+    width: 64px;
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .t-hero {
+    font-size: 90px;
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  .t-h2 {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    margin-bottom: 26px;
+  }
+  .t-num {
+    font-size: 220px;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin-bottom: 8px;
+  }
+  .t-num-label {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .t-quote {
+    font-size: 50px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+  .t-attr {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .body {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.55;
+    max-width: 760px;
+  }
+
+  .sub {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    opacity: 0.65;
+    max-width: 680px;
+    margin-top: 4px;
+  }
+
+  .qmark {
+    font-size: 200px;
+    font-weight: 900;
+    line-height: 0.7;
+    opacity: 0.12;
+    margin-bottom: -20px;
+    align-self: flex-start;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 52px;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 44px;
+    text-decoration: none;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 44px;
+  }
+
+  /* ════════════════════════════
+     SLIDE 1 — CAPA (cream)
+  ════════════════════════════ */
+  #s1 { background: var(--cream); color: var(--navy); }
+  #s1 .wm { color: rgba(26,31,60,0.05); }
+  #s1 .bar-logo-text { color: var(--navy); }
+  #s1 .counter { color: var(--navy); }
+  #s1 .kicker { color: var(--red); }
+  #s1 .rule { background: var(--red); }
+  #s1 .handle { color: rgba(26,31,60,0.4); }
+
+  /* ════════════════════════════
+     SLIDE 2 — NÚMERO (navy)
+  ════════════════════════════ */
+  #s2 { background: var(--navy); color: var(--white); }
+  #s2 .wm { color: rgba(255,255,255,0.04); }
+  #s2 .bar-logo-text { color: var(--white); }
+  #s2 .counter { color: var(--white); }
+  #s2 .kicker { color: var(--red); }
+  #s2 .rule { background: var(--red); }
+  #s2 .t-num { color: var(--red); }
+  #s2 .t-num-label { color: rgba(255,255,255,0.75); }
+  #s2 .body { color: rgba(255,255,255,0.7); }
+  #s2 .handle { color: var(--muted); }
+
+  /* ════════════════════════════
+     SLIDE 3 — INFO (cream)
+  ════════════════════════════ */
+  #s3 { background: var(--cream); color: var(--navy); }
+  #s3 .wm { color: rgba(26,31,60,0.05); }
+  #s3 .bar-logo-text { color: var(--navy); }
+  #s3 .counter { color: var(--navy); }
+  #s3 .pill { background: rgba(217,53,69,0.1); color: var(--red); border: 1px solid rgba(217,53,69,0.25); }
+  #s3 .rule { background: var(--red); }
+  #s3 .body { color: rgba(26,31,60,0.7); }
+  #s3 .handle { color: rgba(26,31,60,0.4); }
+
+  /* ════════════════════════════
+     SLIDE 4 — CITAÇÃO (navy)
+  ════════════════════════════ */
+  #s4 { background: var(--navy); color: var(--white); }
+  #s4 .wm { color: rgba(255,255,255,0.04); }
+  #s4 .bar-logo-text { color: var(--white); }
+  #s4 .counter { color: var(--white); }
+  #s4 .qmark { color: var(--red); }
+  #s4 .handle { color: var(--muted); }
+
+  /* ════════════════════════════
+     SLIDE 5 — INFO (red)
+  ════════════════════════════ */
+  #s5 { background: var(--red); color: var(--white); }
+  #s5 .wm { color: rgba(0,0,0,0.12); }
+  #s5 .bar-logo-text { color: var(--white); }
+  #s5 .counter { color: var(--white); }
+  #s5 .pill { background: rgba(255,255,255,0.15); color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+  #s5 .rule { background: var(--white); }
+  #s5 .body { color: rgba(255,255,255,0.8); }
+  #s5 .handle { color: rgba(255,255,255,0.5); }
+
+  /* ════════════════════════════
+     SLIDE 6 — INFO (cream)
+  ════════════════════════════ */
+  #s6 { background: var(--cream); color: var(--navy); }
+  #s6 .wm { color: rgba(26,31,60,0.05); }
+  #s6 .bar-logo-text { color: var(--navy); }
+  #s6 .counter { color: var(--navy); }
+  #s6 .pill { background: rgba(217,53,69,0.1); color: var(--red); border: 1px solid rgba(217,53,69,0.25); }
+  #s6 .rule { background: var(--red); }
+  #s6 .body { color: rgba(26,31,60,0.7); }
+  #s6 .handle { color: rgba(26,31,60,0.4); }
+
+  /* ════════════════════════════
+     SLIDE 7 — CTA FINAL (navy)
+  ════════════════════════════ */
+  #s7 { background: var(--navy); color: var(--white); }
+  #s7 .wm { color: rgba(217,53,69,0.08); }
+  #s7 .handle { color: var(--muted); }
+  #s7 .sub { opacity: 0.6; }
+  #s7 .divider { background: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     SLIDE 1 — CAPA (cream)
+════════════════════════════════════ -->
+<div class="slide" id="s1">
+  <span class="wm">?</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">01 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="kicker">Consórcio na prática</span>
+    <div class="rule"></div>
+    <h1 class="t-hero">O que ninguém<br>te explica sobre<br>consórcio</h1>
+    <p class="sub">Antes de descartar, vale entender como funciona de verdade.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 2 — NÚMERO (navy)
+════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <span class="wm">M</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">02 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="kicker">O mercado real</span>
+    <div class="rule"></div>
+    <p class="t-num">10<span style="font-size:90px">M</span><span style="font-size:70px">+</span></p>
+    <p class="t-num-label">consorciados ativos no Brasil</p>
+    <p class="body">Consórcio não é coisa do passado. É um dos mercados que mais cresce — e quem entende, usa a favor.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 3 — MITO #1 (cream)
+════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <span class="wm">1</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">03 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="pill">Mito #1</span>
+    <h2 class="t-h2">Consórcio demora<br>demais pra<br>contemplar</h2>
+    <div class="rule"></div>
+    <p class="body">Depende. Tem gente contemplada no primeiro mês com lance. E mesmo sem lance, o prazo médio costuma ser menor do que parece. É planejamento, não sorte.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 4 — CITAÇÃO (navy)
+════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <span class="wm">"</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">04 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="qmark">"</span>
+    <blockquote class="t-quote">"Eu achava que<br>consórcio era furada.<br>Hoje tenho dois<br>imóveis quitados<br>sem ter pago juros."</blockquote>
+    <p class="t-attr">Situação real de cliente</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 5 — MITO #2 (red)
+════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <span class="wm">2</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">05 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="pill">Mito #2</span>
+    <h2 class="t-h2">Consórcio tem<br>juros escondidos</h2>
+    <div class="rule"></div>
+    <p class="body">Zero juros. Tem taxa de administração, que é diluída nas parcelas — e costuma sair bem mais barato que qualquer financiamento. Compara e vê.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 6 — MITO #3 (cream)
+════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <span class="wm">3</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">06 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="pill">Mito #3</span>
+    <h2 class="t-h2">Se eu desistir,<br>perco tudo</h2>
+    <div class="rule"></div>
+    <p class="body">Não. Você pode transferir a cota, vender, ou aguardar o encerramento do grupo pra receber o que pagou. Tem saída — e a gente ajuda com isso.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 7 — CTA FINAL (navy)
+════════════════════════════════════ -->
+<div class="slide" id="s7">
+  <span class="wm">P</span>
+
+  <div class="content">
+    <span style="font-size:17px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;opacity:0.5;margin-bottom:36px;">Prosperecon</span>
+
+    <div class="divider"></div>
+
+    <h2 class="t-h2" style="margin-bottom:16px;">Tem dúvida?<br>Manda uma<br>mensagem</h2>
+    <p class="sub">A gente explica sem compromisso.</p>
+
+    <p style="margin-top:48px;font-size:15px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;opacity:0.5;">Fale com a gente</p>
+    <p style="font-size:34px;font-weight:800;letter-spacing:0.04em;margin-top:10px;">Ligue para Débora</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+</body>
+</html>

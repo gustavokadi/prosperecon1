@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A1F3C;
+    --red:    #D93545;
+    --white:  #FFFFFF;
+    --cream:  #F2F2F2;
+    --muted:  rgba(255,255,255,0.38);
+    --font:   'Montserrat', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 20px;
+  }
+
+  /* ── SLIDE BASE ── */
+  .slide {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 100px 100px;
+  }
+
+  /* ── WATERMARK LETTER ── */
+  .wm {
+    position: absolute;
+    bottom: -20px;
+    right: 40px;
+    font-family: var(--font);
+    font-weight: 900;
+    font-size: 420px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER BAR (logo + counter) ── */
+  .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 44px 70px 0;
+    z-index: 10;
+  }
+  .bar img {
+    height: 38px;
+    width: auto;
+  }
+  .bar-logo-text {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .counter {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    opacity: 0.45;
+  }
+
+  /* ── FOOTER BAR ── */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 70px 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .handle {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ── CONTENT LAYER ── */
+  .content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  /* ── KICKER ── */
+  .kicker {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  /* ── RULE ── */
+  .rule {
+    width: 64px;
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  /* ── TITLES ── */
+  .t-hero {
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  .t-h2 {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    margin-bottom: 26px;
+  }
+  .t-num {
+    font-size: 240px;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin-bottom: 8px;
+  }
+  .t-num-label {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .t-quote {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+  .t-attr {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  /* ── BODY ── */
+  .body {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.55;
+    max-width: 760px;
+  }
+
+  /* ── SUBTITLE (capa) ── */
+  .sub {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    opacity: 0.65;
+    max-width: 680px;
+    margin-top: 4px;
+  }
+
+  /* ── QUOTE MARK ── */
+  .qmark {
+    font-size: 200px;
+    font-weight: 900;
+    line-height: 0.7;
+    opacity: 0.12;
+    margin-bottom: -20px;
+    align-self: flex-start;
+  }
+
+  /* ── PILL/TAG ── */
+  .pill {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+
+  /* ── CTA BUTTON ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 52px;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 44px;
+    text-decoration: none;
+  }
+  .btn-icon {
+    font-size: 22px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin-bottom: 44px;
+  }
+
+  /* ════════════════════════════
+     SLIDE 1 — CAPA (navy)
+  ════════════════════════════ */
+  #s1 { background: var(--navy); color: var(--white); }
+  #s1 .wm { color: rgba(255,255,255,0.04); }
+  #s1 .bar-logo-text { color: var(--white); }
+  #s1 .counter { color: var(--white); }
+  #s1 .kicker { color: var(--red); }
+  #s1 .rule { background: var(--red); }
+  #s1 .handle { color: var(--muted); }
+
+  /* ════════════════════════════
+     SLIDE 2 — NÚMERO (cream)
+  ════════════════════════════ */
+  #s2 { background: var(--cream); color: var(--navy); }
+  #s2 .wm { color: rgba(26,31,60,0.05); }
+  #s2 .bar-logo-text { color: var(--navy); }
+  #s2 .counter { color: var(--navy); }
+  #s2 .kicker { color: var(--red); }
+  #s2 .rule { background: var(--red); }
+  #s2 .t-num { color: var(--red); }
+  #s2 .t-num-label { color: var(--navy); }
+  #s2 .body { color: rgba(26,31,60,0.7); }
+  #s2 .handle { color: rgba(26,31,60,0.4); }
+
+  /* ════════════════════════════
+     SLIDE 3 — INFO (navy)
+  ════════════════════════════ */
+  #s3 { background: var(--navy); color: var(--white); }
+  #s3 .wm { color: rgba(255,255,255,0.04); }
+  #s3 .bar-logo-text { color: var(--white); }
+  #s3 .counter { color: var(--white); }
+  #s3 .kicker { color: var(--red); }
+  #s3 .rule { background: var(--red); }
+  #s3 .body { color: rgba(255,255,255,0.7); }
+  #s3 .handle { color: var(--muted); }
+  #s3 .pill { background: rgba(217,53,69,0.15); color: var(--red); border: 1px solid rgba(217,53,69,0.3); }
+
+  /* ════════════════════════════
+     SLIDE 4 — CITAÇÃO (cream)
+  ════════════════════════════ */
+  #s4 { background: var(--cream); color: var(--navy); }
+  #s4 .wm { color: rgba(26,31,60,0.04); }
+  #s4 .bar-logo-text { color: var(--navy); }
+  #s4 .counter { color: var(--navy); }
+  #s4 .qmark { color: var(--red); }
+  #s4 .handle { color: rgba(26,31,60,0.4); }
+
+  /* ════════════════════════════
+     SLIDE 5 — NÚMERO (red)
+  ════════════════════════════ */
+  #s5 { background: var(--red); color: var(--white); }
+  #s5 .wm { color: rgba(0,0,0,0.12); }
+  #s5 .bar-logo-text { color: var(--white); }
+  #s5 .counter { color: var(--white); }
+  #s5 .kicker { color: rgba(255,255,255,0.7); }
+  #s5 .rule { background: var(--white); }
+  #s5 .t-num { color: var(--white); }
+  #s5 .t-num-label { color: rgba(255,255,255,0.75); }
+  #s5 .body { color: rgba(255,255,255,0.8); }
+  #s5 .handle { color: rgba(255,255,255,0.5); }
+
+  /* ════════════════════════════
+     SLIDE 6 — INFO (cream)
+  ════════════════════════════ */
+  #s6 { background: var(--cream); color: var(--navy); }
+  #s6 .wm { color: rgba(26,31,60,0.05); }
+  #s6 .bar-logo-text { color: var(--navy); }
+  #s6 .counter { color: var(--navy); }
+  #s6 .kicker { color: var(--red); }
+  #s6 .rule { background: var(--red); }
+  #s6 .body { color: rgba(26,31,60,0.7); }
+  #s6 .handle { color: rgba(26,31,60,0.4); }
+  #s6 .pill { background: rgba(217,53,69,0.1); color: var(--red); border: 1px solid rgba(217,53,69,0.25); }
+
+  /* ════════════════════════════
+     SLIDE 7 — CTA FINAL (navy)
+  ════════════════════════════ */
+  #s7 { background: var(--navy); color: var(--white); }
+  #s7 .wm { color: rgba(217,53,69,0.08); }
+  #s7 .handle { color: var(--muted); }
+  #s7 .btn { background: var(--white); color: var(--navy); }
+  #s7 .btn:hover { opacity: 0.9; }
+  #s7 .sub { opacity: 0.6; }
+  #s7 .divider { background: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     SLIDE 1 — CAPA
+════════════════════════════════════ -->
+<div class="slide" id="s1">
+  <span class="wm">P</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">01 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="kicker">Consórcio Contemplado</span>
+    <div class="rule"></div>
+    <h1 class="t-hero">Carta contemplada parada<br>é dinheiro parado</h1>
+    <p class="sub">Saiba quanto você pode receber vendendo sua carta hoje.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 2 — NÚMERO (até 30%)
+════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <span class="wm">%</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">02 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="kicker">O que você pode ganhar</span>
+    <div class="rule"></div>
+    <p class="t-num">30<span style="font-size:100px">%</span></p>
+    <p class="t-num-label">a mais do que pagou</p>
+    <p class="body">Quem foi contemplado tem uma carta com valor de mercado. Dá pra vender esse crédito e embolsar um lucro real, sem usar o bem, sem burocracia.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 3 — COMO FUNCIONA (navy)
+════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <span class="wm">C</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">03 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="pill">Como funciona</span>
+    <h2 class="t-h2">Carta contemplada<br>tem valor fora<br>do consórcio</h2>
+    <div class="rule"></div>
+    <p class="body">Muita gente não sabe, mas uma carta contemplada pode ser negociada. Quem compra usa o crédito. Quem vende recebe o dinheiro e ainda lucra o ágio.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 4 — CITAÇÃO (cream)
+════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <span class="wm">?</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">04 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="qmark">"</span>
+    <blockquote class="t-quote">"Fui contemplado,<br>mas não preciso<br>do imóvel agora.<br>Prefiro o dinheiro<br>na mão."</blockquote>
+    <p class="t-attr">Situação real de quem vendeu a carta</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 5 — 40 ANOS (red)
+════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <span class="wm">4</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">05 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="kicker">Quem compra sua carta</span>
+    <div class="rule"></div>
+    <p class="t-num">40</p>
+    <p class="t-num-label">anos no mercado</p>
+    <p class="body">Compramos cartas contempladas diretamente, sem intermediários, sem enrolação. Você manda o extrato, a gente faz a proposta na hora.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 6 — QUANDO FAZ SENTIDO (cream)
+════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <span class="wm">V</span>
+
+  <div class="bar">
+    <span class="bar-logo-text">Prosperecon</span>
+    <span class="counter">06 / 07</span>
+  </div>
+
+  <div class="content">
+    <span class="pill">Quando faz sentido vender</span>
+    <h2 class="t-h2">Você não precisa<br>do bem agora</h2>
+    <div class="rule"></div>
+    <p class="body">Não vai construir, não vai comprar carro, não quer imobilizar o crédito. Vender a carta é a forma mais rápida de transformar isso em dinheiro vivo, sem perder o que já pagou.</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SLIDE 7 — CTA FINAL (navy)
+════════════════════════════════════ -->
+<div class="slide" id="s7">
+  <span class="wm">W</span>
+
+  <div class="content">
+    <span style="font-size:17px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;opacity:0.5;margin-bottom:36px;">Prosperecon</span>
+
+    <div class="divider"></div>
+
+    <h2 class="t-h2" style="margin-bottom:16px;">Manda o extrato<br>da sua carta</h2>
+    <p class="sub">A gente analisa e te faz uma proposta hoje.</p>
+
+    <p style="margin-top:48px;font-size:15px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;opacity:0.5;">Fale no WhatsApp</p>
+    <p style="font-size:34px;font-weight:800;letter-spacing:0.04em;margin-top:10px;">Link na bio</p>
+  </div>
+
+  <div class="footer">
+    <span class="handle">@prosperecon</span>
+  </div>
+</div>
+
+</body>
+</html>
