@@ -416,78 +416,7 @@
         </tr>
       </thead>
       <tbody id="cotasBody">
-        <!--
-          ═══════════════════════════════════════════════
-          COMO ADICIONAR COTAS:
-          Copie um <tr> e troque os dados.
-          data-tipo: imovel | veiculo | pesados | servicos
-          data-admin: nome da administradora
-          data-credito / data-entrada / data-parcela: valores numéricos
-          ═══════════════════════════════════════════════
-        -->
-
-        <tr data-tipo="imovel" data-admin="Porto Seguro" data-credito="400000" data-entrada="52000" data-parcela="1980">
-          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
-          <td class="td-adm"><div class="tipo-icon tipo-icon--imovel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div> Porto Seguro</td>
-          <td class="td-credito">R$ 400.000</td>
-          <td>R$ 52.000</td>
-          <td>R$ 1.980</td>
-          <td>120</td>
-          <td class="td-action"><a href="#" class="btn-wpp" data-wpp><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>WhatsApp</span></a></td>
-        </tr>
-
-        <tr data-tipo="veiculo" data-admin="Bradesco" data-credito="120000" data-entrada="18000" data-parcela="699">
-          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
-          <td class="td-adm"><div class="tipo-icon tipo-icon--veiculo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M5 17a2 2 0 01-2-2V7a2 2 0 012-2h10l4 5v5a2 2 0 01-2 2M5 17a2 2 0 002 2h1a2 2 0 002-2M15 17a2 2 0 002 2h1a2 2 0 002-2"/></svg></div> Bradesco</td>
-          <td class="td-credito">R$ 120.000</td>
-          <td>R$ 18.000</td>
-          <td>R$ 699</td>
-          <td>72</td>
-          <td class="td-action"><a href="#" class="btn-wpp" data-wpp><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>WhatsApp</span></a></td>
-        </tr>
-
-        <tr data-tipo="imovel" data-admin="Itaú" data-credito="250000" data-entrada="31000" data-parcela="1240">
-          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
-          <td class="td-adm"><div class="tipo-icon tipo-icon--imovel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div> Itaú</td>
-          <td class="td-credito">R$ 250.000</td>
-          <td>R$ 31.000</td>
-          <td>R$ 1.240</td>
-          <td>100</td>
-          <td class="td-action"><a href="#" class="btn-wpp" data-wpp><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>WhatsApp</span></a></td>
-        </tr>
-
-        <tr data-tipo="veiculo" data-admin="Santander" data-credito="80000" data-entrada="12000" data-parcela="495">
-          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
-          <td class="td-adm"><div class="tipo-icon tipo-icon--veiculo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M5 17a2 2 0 01-2-2V7a2 2 0 012-2h10l4 5v5a2 2 0 01-2 2M5 17a2 2 0 002 2h1a2 2 0 002-2M15 17a2 2 0 002 2h1a2 2 0 002-2"/></svg></div> Santander</td>
-          <td class="td-credito">R$ 80.000</td>
-          <td>R$ 12.000</td>
-          <td>R$ 495</td>
-          <td>60</td>
-          <td class="td-action"><a href="#" class="btn-wpp" data-wpp><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>WhatsApp</span></a></td>
-        </tr>
-
-        <tr data-tipo="pesados" data-admin="Embracon" data-credito="500000" data-entrada="75000" data-parcela="2800">
-          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
-          <td class="td-adm"><div class="tipo-icon tipo-icon--pesados"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div> Embracon</td>
-          <td class="td-credito">R$ 500.000</td>
-          <td>R$ 75.000</td>
-          <td>R$ 2.800</td>
-          <td>150</td>
-          <td class="td-action"><a href="#" class="btn-wpp" data-wpp><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>WhatsApp</span></a></td>
-        </tr>
-
-        <tr data-tipo="servicos" data-admin="Caixa" data-credito="45000" data-entrada="7000" data-parcela="280">
-          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
-          <td class="td-adm"><div class="tipo-icon tipo-icon--servicos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div> Caixa</td>
-          <td class="td-credito">R$ 45.000</td>
-          <td>R$ 7.000</td>
-          <td>R$ 280</td>
-          <td>80</td>
-          <td class="td-action"><a href="#" class="btn-wpp" data-wpp><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span>WhatsApp</span></a></td>
-        </tr>
-
-        <!-- ADICIONE MAIS LINHAS AQUI -->
-
+        <tr id="loadingRow"><td colspan="7" style="text-align:center;padding:32px;color:#6B7280;">Carregando cartas...</td></tr>
       </tbody>
     </table>
   </div>
@@ -556,6 +485,8 @@
   </div>
 
   <script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQgRxaCEbrPxV2dN3dT86tSQszBTxmxUBaX_-FUlfD-FOfLDZa3KzLdn_sYAqRT7cUnl_JGrZnk8WuY/pub?output=csv';
+
     const PHONE = '5511940466739';
     const body = document.getElementById('cotasBody');
     const selBar = document.getElementById('selectionBar');
@@ -571,6 +502,86 @@
 
     const TIPO_LABEL = { imovel:'Imóvel', veiculo:'Veículo', pesados:'Pesados', servicos:'Serviços' };
 
+    const TIPO_MAP = {
+      imovel:'imovel', imoveis:'imovel',
+      veiculo:'veiculo', veiculos:'veiculo', carro:'veiculo', carros:'veiculo', auto:'veiculo',
+      pesados:'pesados', pesado:'pesados', frota:'pesados', caminhao:'pesados', caminhoes:'pesados',
+      servicos:'servicos', servico:'servicos'
+    };
+
+    function parseNum(v) { return Number(String(v).replace(/\./g, '').replace(',', '.')) || 0; }
+
+    function normalizeTipo(raw) {
+      const key = raw.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+      return TIPO_MAP[key] || key;
+    }
+
+    const TIPO_ICONS = {
+      imovel: '<div class="tipo-icon tipo-icon--imovel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>',
+      veiculo: '<div class="tipo-icon tipo-icon--veiculo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M5 17a2 2 0 01-2-2V7a2 2 0 012-2h10l4 5v5a2 2 0 01-2 2M5 17a2 2 0 002 2h1a2 2 0 002-2M15 17a2 2 0 002 2h1a2 2 0 002-2"/></svg></div>',
+      pesados: '<div class="tipo-icon tipo-icon--pesados"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>',
+      servicos: '<div class="tipo-icon tipo-icon--servicos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>'
+    };
+
+    const WPP_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim().toLowerCase());
+      return lines.slice(1).map(line => {
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          if (line[i] === '"') { inQuotes = !inQuotes; }
+          else if (line[i] === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+          else { current += line[i]; }
+        }
+        values.push(current.trim());
+        const obj = {};
+        headers.forEach((h, i) => { obj[h] = values[i] || ''; });
+        return obj;
+      }).filter(row => row.tipo && row.administradora);
+    }
+
+    function renderRows(data) {
+      body.innerHTML = '';
+      data.forEach(row => {
+        const tipo = normalizeTipo(row.tipo);
+        const admin = row.administradora;
+        const credito = parseNum(row.credito);
+        const entrada = parseNum(row.entrada);
+        const parcela = parseNum(row.parcela);
+        const prazo = row.prazo || '';
+
+        const tr = document.createElement('tr');
+        tr.dataset.tipo = tipo;
+        tr.dataset.admin = admin;
+        tr.dataset.credito = credito;
+        tr.dataset.entrada = entrada;
+        tr.dataset.parcela = parcela;
+
+        tr.innerHTML = `
+          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
+          <td class="td-adm">${TIPO_ICONS[tipo] || ''} ${admin}</td>
+          <td class="td-credito">${fmt(credito)}</td>
+          <td>${fmt(entrada)}</td>
+          <td>${fmt(parcela)}</td>
+          <td>${prazo}</td>
+          <td class="td-action"><a href="#" class="btn-wpp" data-wpp>${WPP_ICON} <span>WhatsApp</span></a></td>
+        `;
+        body.appendChild(tr);
+      });
+      updateCount();
+    }
+
+    fetch(SHEET_URL)
+      .then(r => r.text())
+      .then(csv => renderRows(parseCSV(csv)))
+      .catch(() => {
+        body.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:32px;color:#cc0000;">Erro ao carregar cartas. Verifique se a planilha está publicada.</td></tr>';
+      });
+
     body.addEventListener('click', function(e) {
       const btn = e.target.closest('[data-wpp]');
       if (!btn) return;
@@ -578,10 +589,10 @@
       const tr = btn.closest('tr');
       const tipo = TIPO_LABEL[tr.dataset.tipo] || tr.dataset.tipo;
       const admin = tr.dataset.admin;
+      const credito = fmt(tr.dataset.credito);
+      const entrada = fmt(tr.dataset.entrada);
+      const parcela = fmt(tr.dataset.parcela);
       const cells = tr.querySelectorAll('td');
-      const credito = cells[2].textContent;
-      const entrada = cells[3].textContent;
-      const parcela = cells[4].textContent;
       const prazo = cells[5].textContent;
       const msg = `Olá! Tenho interesse na cota:\n• Tipo: ${tipo}\n• Adm: ${admin}\n• Crédito: ${credito}\n• Entrada: ${entrada}\n• Parcela: ${parcela}\n• Prazo: ${prazo} meses`;
       window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -621,8 +632,12 @@
       checked.forEach((cb, i) => {
         const tr = cb.closest('tr');
         const tipo = TIPO_LABEL[tr.dataset.tipo] || tr.dataset.tipo;
+        const credito = fmt(tr.dataset.credito);
+        const entrada = fmt(tr.dataset.entrada);
+        const parcela = fmt(tr.dataset.parcela);
         const cells = tr.querySelectorAll('td');
-        lines.push(`${i+1}. ${tipo} — ${tr.dataset.admin} — ${cells[2].textContent} (Entrada: ${cells[3].textContent} | Parcela: ${cells[4].textContent} | ${cells[5].textContent} meses)`);
+        const prazo = cells[5].textContent;
+        lines.push(`${i+1}. ${tipo} — ${tr.dataset.admin} — ${credito} (Entrada: ${entrada} | Parcela: ${parcela} | ${prazo} meses)`);
       });
       window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
     });
@@ -662,7 +677,6 @@
       const total = body.querySelectorAll('tr').length;
       cotaCount.textContent = visible === total ? `${total} cotas` : `${visible} de ${total}`;
     }
-    updateCount();
   </script>
 </body>
 </html>
