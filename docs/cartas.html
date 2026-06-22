@@ -142,84 +142,62 @@
       padding: 16px 24px;
       overflow-x: auto;
     }
-    /* ── CARD LAYOUT (todas as telas) ── */
-    .cotas-table { display: block; border: none; box-shadow: none; background: transparent; width: 100%; }
-    .cotas-table thead { display: none; }
-    .cotas-table tbody {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .cotas-table tbody tr {
-      display: grid;
-      grid-template-columns: auto 1fr 1fr 1fr;
-      align-items: start;
+    /* ── TABELA DESKTOP (estilo Excel) ── */
+    .cotas-table {
+      width: 100%;
+      border-collapse: collapse;
       background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
       border: 1px solid var(--gray);
-      border-radius: 14px;
-      padding: 22px 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .cotas-table thead { background: var(--navy); color: var(--white); }
+    .cotas-table th {
+      padding: 8px 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .cotas-table th.th-check,
+    .cotas-table td.td-check { width: 24px; text-align: center; padding: 6px 2px 6px 6px; }
+    .cotas-table th.th-adm { padding-left: 6px; }
+    .cotas-table td.td-adm { padding-left: 6px !important; }
+    .cotas-table th.th-action,
+    .cotas-table td.td-action { text-align: center; padding: 6px 4px; }
+    .cotas-table th.th-tipo,
+    .cotas-table td.td-tipo { text-align: center; }
+
+    .cotas-table tbody tr {
+      border-bottom: 1px solid var(--cream-dark);
       transition: background .1s;
     }
     .cotas-table tbody tr:hover { background: var(--cream); }
     .cotas-table tbody tr.selected { background: #F5F0E0; }
-    .cotas-table td { padding: 0; white-space: normal; font-size: 13px; }
-
-    /* Checkbox */
-    .cotas-table td.td-check { grid-column: 1; grid-row: 1; display: flex; align-items: flex-start; padding-right: 12px; padding-top: 14px; width: auto; }
-
-    /* Labels acima dos valores */
-    .cotas-table td.td-adm::before,
-    .cotas-table td.td-tipo::before,
-    .cotas-table td.td-credito::before,
-    .cotas-table td.td-entrada::before,
-    .cotas-table td.td-parcela::before,
-    .cotas-table td.td-prazo::before {
-      display: block;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--gray-text);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      margin-bottom: 4px;
-    }
-    .cotas-table td.td-adm::before { content: "Administradora"; }
-    .cotas-table td.td-tipo::before { content: "Categoria"; }
-    .cotas-table td.td-credito::before { content: "Valor do Crédito"; }
-    .cotas-table td.td-entrada::before { content: "Entrada"; }
-    .cotas-table td.td-parcela::before { content: "Parcela"; }
-    .cotas-table td.td-prazo::before { content: "Prazo"; }
-
-    /* Linha 1: Categoria + Administradora + Valor do Crédito */
-    .cotas-table td.td-tipo { grid-column: 2; grid-row: 1; }
-    .cotas-table td.td-adm { grid-column: 3; grid-row: 1; font-size: 18px; font-weight: 800; }
-    .cotas-table td.td-credito { grid-column: 4; grid-row: 1; text-align: right; font-size: 17px; font-weight: 900; color: var(--navy); }
-
-    /* Separador contínuo entre linhas */
-    .cotas-table tbody tr::after {
-      content: '';
-      grid-column: 1 / -1;
-      grid-row: 2;
-      border-top: 1px solid var(--cream-dark);
-      margin-top: 14px;
+    .cotas-table td {
+      padding: 6px 6px;
+      font-size: 13px;
+      white-space: nowrap;
     }
 
-    /* Linha 3: Entrada + Parcela + Prazo */
-    .cotas-table td.td-entrada { grid-column: 2; grid-row: 3; padding-top: 12px; font-size: 15px; font-weight: 700; text-align: center; }
-    .cotas-table td.td-parcela { grid-column: 3; grid-row: 3; padding-top: 12px; font-size: 15px; font-weight: 700; text-align: center; }
-    .cotas-table td.td-prazo  { grid-column: 4; grid-row: 3; padding-top: 12px; font-size: 15px; font-weight: 700; text-align: center; }
-    .td-prazo::after { content: " meses"; font-size: 11px; font-weight: 600; }
+    .td-adm { font-weight: 700; font-size: 13px; }
+    .td-credito { font-weight: 800; color: var(--navy); }
+    .td-prazo::after { content: " meses"; font-size: 10px; }
 
-    /* Linha 4: botão WhatsApp */
-    .cotas-table td.td-action { grid-column: 1 / -1; grid-row: 4; margin-top: 16px; padding: 0; }
+    /* Labels ocultos no desktop (só aparecem no mobile) */
+    .cotas-table td::before { display: none !important; }
+    .cotas-table tbody tr::after { display: none; }
 
     /* Tipo tags */
     .tipo-tag {
       display: inline-flex;
       align-items: center;
-      padding: 4px 12px;
-      border-radius: 6px;
-      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: .3px;
       flex-shrink: 0;
@@ -231,25 +209,23 @@
     .tipo-tag--servicos { background: #E8E0F0; color: #6B4FA0; }
 
     .btn-wpp {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
+      gap: 3px;
       background: var(--green);
       color: var(--white);
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
       font-weight: 700;
       transition: all .15s;
       white-space: nowrap;
-      width: 100%;
     }
     .btn-wpp:hover { background: #20b858; transform: translateY(-1px); }
 
     .row-check {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       accent-color: var(--gold);
       cursor: pointer;
     }
@@ -381,9 +357,6 @@
     .whatsapp-fab:hover { transform: scale(1.1); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .cotas-table tbody { grid-template-columns: repeat(2, 1fr); }
-    }
     @media (max-width: 900px) {
       .extras__grid { grid-template-columns: 1fr; }
       .filters__search { width: 100%; margin-left: 0; }
@@ -400,6 +373,8 @@
       .filter-pill { padding: 5px 10px; font-size: 10px; }
 
       .table-wrap { padding: 8px; }
+      .cotas-table th { padding: 8px 4px; }
+      .cotas-table td { padding: 6px 4px; }
 
       .selection-bar { padding: 10px 12px; }
       .selection-bar__inner { flex-direction: column; text-align: center; gap: 10px; }
@@ -410,37 +385,57 @@
       .extras { margin: 32px auto; padding: 0 12px; }
       .extras__grid { grid-template-columns: 1fr; gap: 12px; }
     }
+    /* ── MOBILE CARD LAYOUT ── */
     @media (max-width: 640px) {
-      .cotas-table tbody { grid-template-columns: 1fr; gap: 10px; }
-      .cotas-table tbody tr { padding: 14px 12px; }
-      .cotas-table td.td-check { padding-right: 8px; padding-top: 10px; }
-      .row-check { width: 14px; height: 14px; }
+      .cotas-table { display: block; border: none; box-shadow: none; background: transparent; }
+      .cotas-table thead { display: none; }
+      .cotas-table tbody { display: block; }
+      .cotas-table tbody tr {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr 1fr;
+        align-items: start;
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: 14px;
+        padding: 14px 12px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      }
+      .cotas-table tbody tr:hover { background: var(--white); }
+      .cotas-table td { padding: 0; white-space: normal; }
 
-      /* Labels menores no mobile */
-      .cotas-table td.td-adm::before,
-      .cotas-table td.td-tipo::before,
-      .cotas-table td.td-credito::before,
-      .cotas-table td.td-entrada::before,
-      .cotas-table td.td-parcela::before,
-      .cotas-table td.td-prazo::before { font-size: 8px; letter-spacing: .3px; margin-bottom: 2px; }
+      /* Checkbox */
+      .cotas-table td.td-check { grid-column: 1; grid-row: 1; display: flex; align-items: flex-start; padding-right: 8px; padding-top: 10px; width: auto; }
 
-      /* Linha 1: valores menores */
-      .cotas-table td.td-adm { font-size: 13px; }
-      .cotas-table td.td-credito { font-size: 13px; }
+      /* Labels visíveis no mobile */
+      .cotas-table td::before { display: block !important; font-size: 8px; font-weight: 700; color: var(--gray-text); text-transform: uppercase; letter-spacing: .3px; margin-bottom: 2px; }
+      .cotas-table td.td-adm::before { content: "Administradora"; }
+      .cotas-table td.td-tipo::before { content: "Categoria"; }
+      .cotas-table td.td-credito::before { content: "Valor do Crédito"; }
+      .cotas-table td.td-entrada::before { content: "Entrada"; }
+      .cotas-table td.td-parcela::before { content: "Parcela"; }
+      .cotas-table td.td-prazo::before { content: "Prazo"; }
+      .cotas-table td.td-check::before,
+      .cotas-table td.td-action::before { display: none !important; }
+
+      /* Linha 1: Categoria + Administradora + Valor do Crédito */
+      .cotas-table td.td-tipo { grid-column: 2; grid-row: 1; }
+      .cotas-table td.td-adm { grid-column: 3; grid-row: 1; font-size: 13px; font-weight: 800; padding-left: 0 !important; }
+      .cotas-table td.td-credito { grid-column: 4; grid-row: 1; text-align: right; font-size: 13px; font-weight: 900; color: var(--navy); }
       .tipo-tag { font-size: 10px; padding: 2px 8px; }
 
-      /* Separador */
-      .cotas-table tbody tr::after { margin-top: 10px; }
+      /* Separador contínuo */
+      .cotas-table tbody tr::after { display: block; content: ''; grid-column: 1 / -1; grid-row: 2; border-top: 1px solid var(--cream-dark); margin-top: 10px; }
 
-      /* Linha 2: valores menores */
-      .cotas-table td.td-entrada,
-      .cotas-table td.td-parcela,
-      .cotas-table td.td-prazo { font-size: 12px; padding-top: 8px; }
+      /* Linha 2: Entrada + Parcela + Prazo */
+      .cotas-table td.td-entrada { grid-column: 2; grid-row: 3; padding-top: 8px; font-size: 12px; font-weight: 700; text-align: center; }
+      .cotas-table td.td-parcela { grid-column: 3; grid-row: 3; padding-top: 8px; font-size: 12px; font-weight: 700; text-align: center; }
+      .cotas-table td.td-prazo  { grid-column: 4; grid-row: 3; padding-top: 8px; font-size: 12px; font-weight: 700; text-align: center; }
       .td-prazo::after { font-size: 9px; }
 
-      /* Botão */
-      .cotas-table td.td-action { margin-top: 10px; }
-      .btn-wpp { padding: 10px 12px; font-size: 12px; }
+      /* Botão WhatsApp */
+      .cotas-table td.td-action { grid-column: 1 / -1; grid-row: 4; margin-top: 10px; padding: 0 !important; text-align: left; }
+      .btn-wpp { width: 100%; justify-content: center; padding: 10px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: flex; }
 
       .whatsapp-fab { bottom: 16px; right: 16px; width: 52px; height: 52px; }
     }
