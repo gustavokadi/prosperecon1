@@ -411,13 +411,37 @@
       .extras__grid { grid-template-columns: 1fr; gap: 12px; }
     }
     @media (max-width: 640px) {
-      .cotas-table tbody { grid-template-columns: 1fr; gap: 12px; }
-      .cotas-table tbody tr { padding: 18px 16px; }
-      .cotas-table td.td-adm { font-size: 16px; }
-      .cotas-table td.td-credito { font-size: 15px; }
+      .cotas-table tbody { grid-template-columns: 1fr; gap: 10px; }
+      .cotas-table tbody tr { padding: 14px 12px; }
+      .cotas-table td.td-check { padding-right: 8px; padding-top: 10px; }
+      .row-check { width: 14px; height: 14px; }
+
+      /* Labels menores no mobile */
+      .cotas-table td.td-adm::before,
+      .cotas-table td.td-tipo::before,
+      .cotas-table td.td-credito::before,
+      .cotas-table td.td-entrada::before,
+      .cotas-table td.td-parcela::before,
+      .cotas-table td.td-prazo::before { font-size: 8px; letter-spacing: .3px; margin-bottom: 2px; }
+
+      /* Linha 1: valores menores */
+      .cotas-table td.td-adm { font-size: 13px; }
+      .cotas-table td.td-credito { font-size: 13px; }
+      .tipo-tag { font-size: 10px; padding: 2px 8px; }
+
+      /* Separador */
+      .cotas-table tbody tr::after { margin-top: 10px; }
+
+      /* Linha 2: valores menores */
       .cotas-table td.td-entrada,
       .cotas-table td.td-parcela,
-      .cotas-table td.td-prazo { font-size: 14px; padding-top: 10px; }
+      .cotas-table td.td-prazo { font-size: 12px; padding-top: 8px; }
+      .td-prazo::after { font-size: 9px; }
+
+      /* Botão */
+      .cotas-table td.td-action { margin-top: 10px; }
+      .btn-wpp { padding: 10px 12px; font-size: 12px; }
+
       .whatsapp-fab { bottom: 16px; right: 16px; width: 52px; height: 52px; }
     }
   </style>
