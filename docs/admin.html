@@ -195,6 +195,7 @@
     .carta-info { flex: 1; min-width: 0; }
     .carta-info strong { font-size: 14px; font-weight: 800; }
     .carta-info .carta-details { font-size: 12px; color: var(--gray-text); margin-top: 2px; }
+    .carta-info .carta-obs { font-size: 11px; color: var(--gold-dark); margin-top: 4px; font-style: italic; }
     .carta-tipo {
       display: inline-block;
       padding: 2px 8px;
@@ -297,6 +298,10 @@
             <input type="number" id="fPrazo" placeholder="120">
           </div>
         </div>
+        <div class="form-group" style="margin-top:12px">
+          <label>Observação (só aparece aqui no admin)</label>
+          <input type="text" id="fObs" placeholder="Ex: Cliente João, vence em agosto, aguardando documentação...">
+        </div>
         <button class="btn-add" id="btnAdd">Adicionar carta</button>
         <div class="form-msg" id="formMsg"></div>
       </div>
@@ -369,6 +374,7 @@
               <div class="carta-details">
                 Crédito: ${fmt(c.credito)} &nbsp;|&nbsp; Entrada: ${fmt(c.entrada)} &nbsp;|&nbsp; Parcela: ${fmt(c.parcela)} &nbsp;|&nbsp; ${c.prazo} meses
               </div>
+              ${c.observacao ? `<div class="carta-obs">${c.observacao}</div>` : ''}
             </div>
             <button class="btn-delete" onclick="deleteCarta(${c.id})">Excluir</button>
           </div>
@@ -388,6 +394,7 @@
       const parcela = Number(document.getElementById('fParcela').value);
       const prazo = Number(document.getElementById('fPrazo').value);
       const tipo = document.getElementById('fTipo').value;
+      const observacao = document.getElementById('fObs').value.trim();
 
       if (!admin || !credito || !prazo) {
         msg.className = 'form-msg error';
@@ -403,7 +410,7 @@
         const res = await fetch(`${SUPABASE_URL}/rest/v1/cartas`, {
           method: 'POST',
           headers: headers(),
-          body: JSON.stringify({ tipo, administradora: admin, credito, entrada, parcela, prazo })
+          body: JSON.stringify({ tipo, administradora: admin, credito, entrada, parcela, prazo, observacao })
         });
 
         if (!res.ok) throw new Error();
@@ -415,6 +422,7 @@
         document.getElementById('fEntrada').value = '';
         document.getElementById('fParcela').value = '';
         document.getElementById('fPrazo').value = '';
+        document.getElementById('fObs').value = '';
         loadCartas();
       } catch {
         msg.className = 'form-msg error';
