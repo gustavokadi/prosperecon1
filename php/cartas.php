@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prosperecon — Cartas Contempladas Disponíveis</title>
+  <meta name="description" content="Tabela completa de cartas contempladas disponíveis. Para corretores e parceiros Prosperecon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1C2B4A;
+      --navy-dark: #141F36;
+      --gold: #C8973E;
+      --gold-dark: #A87D30;
+      --gold-light: #D4A955;
+      --cream: #FAF6F0;
+      --cream-dark: #F0EBE3;
+      --white: #FFFFFF;
+      --gray: #E8E0D8;
+      --gray-text: #6B7280;
+      --green: #25D366;
+      --font: 'Montserrat', sans-serif;
+      --serif: 'Playfair Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--navy); background: var(--cream); line-height: 1.5; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--cream);
+      border-bottom: 1px solid var(--gray);
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo img { height: 40px; width: auto; }
+    .header__actions { display: flex; align-items: center; gap: 16px; }
+    .header__back {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-text);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color .2s;
+    }
+    .header__back:hover { color: var(--navy); }
+    .header__whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background .2s;
+    }
+    .header__whatsapp:hover { background: var(--navy-dark); }
+
+    /* ── FILTROS ── */
+    .filters {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray);
+      padding: 12px 24px;
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+    }
+    .filters__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .filters__label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-text);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .filter-pill {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--cream);
+      color: var(--gray-text);
+      border: 1.5px solid var(--gray);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .filter-pill:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-pill.active {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+    .filters__search {
+      margin-left: auto;
+      padding: 7px 14px;
+      border: 1.5px solid var(--gray);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: var(--font);
+      outline: none;
+      width: 180px;
+      background: var(--cream);
+      transition: border-color .2s;
+    }
+    .filters__search:focus { border-color: var(--gold); }
+    .filters__count {
+      font-size: 12px;
+      color: var(--gray-text);
+      font-weight: 600;
+    }
+
+    /* ── TABELA ── */
+    .table-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      overflow-x: auto;
+    }
+    /* ── TABELA DESKTOP (estilo Excel) ── */
+    .cotas-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      border: 1px solid var(--gray);
+    }
+    .cotas-table thead { background: var(--navy); color: var(--white); }
+    .cotas-table th {
+      padding: 8px 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .cotas-table th.th-check,
+    .cotas-table td.td-check { width: 24px; text-align: center; padding: 6px 2px 6px 6px; }
+    .cotas-table th.th-adm { padding-left: 6px; }
+    .cotas-table td.td-adm { padding-left: 6px !important; }
+    .cotas-table th.th-action,
+    .cotas-table td.td-action { text-align: center; padding: 6px 4px; }
+    .cotas-table th.th-tipo,
+    .cotas-table td.td-tipo { text-align: center; }
+
+    .cotas-table tbody tr {
+      border-bottom: 1px solid var(--cream-dark);
+      transition: background .1s;
+    }
+    .cotas-table tbody tr:hover { background: var(--cream); }
+    .cotas-table tbody tr.selected { background: #F5F0E0; }
+    .cotas-table td {
+      padding: 6px 6px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .td-adm { font-weight: 700; font-size: 13px; }
+    .td-credito { font-weight: 800; color: var(--navy); }
+    .td-prazo::after { content: " meses"; font-size: 10px; }
+
+    /* Labels ocultos no desktop (só aparecem no mobile) */
+    .cotas-table td::before { display: none !important; }
+    .cotas-table tbody tr::after { display: none; }
+
+    /* Tipo tags */
+    .tipo-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .tipo-tag--imovel { background: #EDE7D9; color: var(--gold); }
+    .tipo-tag--veiculo { background: #DCE8F0; color: #2A5F8F; }
+    .tipo-tag--pesados { background: #F0E6D6; color: #A0522D; }
+    .tipo-tag--servicos { background: #E8E0F0; color: #6B4FA0; }
+
+    .btn-wpp {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: var(--green);
+      color: var(--white);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .btn-wpp:hover { background: #20b858; transform: translateY(-1px); }
+
+    .row-check {
+      width: 14px;
+      height: 14px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    /* ── BARRA DE SELEÇÃO ── */
+    .selection-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      color: var(--white);
+      padding: 12px 24px;
+      display: none;
+      z-index: 200;
+      box-shadow: 0 -4px 24px rgba(0,0,0,.2);
+    }
+    .selection-bar.visible { display: block; }
+    .selection-bar__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .selection-bar__info { display: flex; align-items: center; gap: 24px; }
+    .selection-bar__stat { text-align: center; }
+    .selection-bar__stat small {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .selection-bar__stat strong { font-size: 15px; font-weight: 900; }
+    .selection-bar__actions { display: flex; gap: 12px; align-items: center; }
+    .btn-send-selected {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: background .15s;
+    }
+    .btn-send-selected:hover { background: var(--gold-dark); }
+    .btn-clear {
+      background: transparent;
+      color: rgba(255,255,255,.7);
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: all .15s;
+    }
+    .btn-clear:hover { color: var(--white); border-color: var(--white); }
+
+    /* ── SEÇÕES EXTRAS ── */
+    .extras {
+      max-width: 1400px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
+    .extras__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .extras__card {
+      background: var(--white);
+      border: 1px solid var(--gray);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .extras__card-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--cream);
+      border: 1.5px solid var(--gray);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      color: var(--gold);
+    }
+    .extras__card h3 { font-size: 15px; font-weight: 800; margin-bottom: 6px; color: var(--navy); }
+    .extras__card p { font-size: 13px; color: var(--gray-text); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    .footer-simple {
+      background: var(--cream);
+      border-top: 1px solid var(--gray);
+      color: var(--gray-text);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* ── WHATSAPP FAB ── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      z-index: 250;
+      transition: transform .2s;
+    }
+    .whatsapp-fab:hover { transform: scale(1.1); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .extras__grid { grid-template-columns: 1fr; }
+      .filters__search { width: 100%; margin-left: 0; }
+    }
+    @media (max-width: 768px) {
+      .header__inner { height: 52px; }
+      .header__back { display: none; }
+      .logo img { height: 32px; }
+      .header__whatsapp { padding: 6px 12px; font-size: 12px; }
+
+      .filters { padding: 8px 12px; top: 52px; }
+      .filters__inner { gap: 6px; }
+      .filters__label { display: none; }
+      .filter-pill { padding: 5px 10px; font-size: 10px; }
+
+      .table-wrap { padding: 8px; }
+      .cotas-table th { padding: 8px 4px; }
+      .cotas-table td { padding: 6px 4px; }
+
+      .selection-bar { padding: 10px 12px; }
+      .selection-bar__inner { flex-direction: column; text-align: center; gap: 10px; }
+      .selection-bar__info { flex-wrap: wrap; justify-content: center; gap: 16px; }
+      .selection-bar__stat strong { font-size: 13px; }
+      .btn-send-selected { padding: 10px 16px; font-size: 12px; width: 100%; justify-content: center; }
+
+      .extras { margin: 32px auto; padding: 0 12px; }
+      .extras__grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+    /* ── MOBILE CARD LAYOUT ── */
+    @media (max-width: 640px) {
+      .cotas-table { display: block; border: none; box-shadow: none; background: transparent; }
+      .cotas-table thead { display: none; }
+      .cotas-table tbody { display: block; }
+      .cotas-table tbody tr {
+        display: grid;
+        grid-template-columns: 24px 1fr 1fr 1fr;
+        column-gap: 0;
+        align-items: start;
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: 10px;
+        padding: 12px 10px;
+        margin-bottom: 8px;
+        box-shadow: 0 1px 6px rgba(0,0,0,.04);
+      }
+      .cotas-table tbody tr:hover { background: var(--white); }
+      .cotas-table td { padding: 0; white-space: normal; }
+
+      /* Checkbox */
+      .cotas-table td.td-check { grid-column: 1; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; width: auto; padding: 0; }
+
+      /* Labels visíveis no mobile */
+      .cotas-table td::before { display: block !important; font-size: 8px; font-weight: 700; color: var(--gray-text); text-transform: uppercase; letter-spacing: .3px; margin-bottom: 1px; }
+      .cotas-table td.td-tipo::before { content: "Categoria"; }
+      .cotas-table td.td-adm::before { content: "Administradora"; }
+      .cotas-table td.td-credito::before { content: "Valor do Crédito"; }
+      .cotas-table td.td-entrada::before { content: "Entrada"; }
+      .cotas-table td.td-parcela::before { content: "Parcela"; }
+      .cotas-table td.td-prazo::before { content: "Prazo"; }
+      .cotas-table td.td-check::before,
+      .cotas-table td.td-action::before { display: none !important; }
+
+      /* Linha 1: Categoria | Administradora | Valor do Crédito */
+      .cotas-table td.td-tipo   { grid-column: 2; grid-row: 1; text-align: left; padding-left: 4px; }
+      .cotas-table td.td-adm    { grid-column: 3; grid-row: 1; text-align: left; font-size: 12px; font-weight: 700; padding-left: 4px; padding-left: 0 !important; }
+      .cotas-table td.td-credito { grid-column: 4; grid-row: 1; text-align: left; font-size: 12px; font-weight: 800; color: var(--navy); padding-left: 4px; }
+      .tipo-tag { font-size: 9px; padding: 2px 6px; }
+
+      /* Separador */
+      .cotas-table tbody tr::after { display: block; content: ''; grid-column: 1 / -1; grid-row: 2; border-top: 1px solid var(--cream-dark); margin-top: 8px; }
+
+      /* Linha 2: Entrada | Parcela | Prazo */
+      .cotas-table td.td-entrada { grid-column: 2; grid-row: 3; padding-top: 6px; font-size: 11px; font-weight: 700; text-align: left; padding-left: 4px; }
+      .cotas-table td.td-parcela { grid-column: 3; grid-row: 3; padding-top: 6px; font-size: 11px; font-weight: 700; text-align: left; padding-left: 4px; }
+      .cotas-table td.td-prazo  { grid-column: 4; grid-row: 3; padding-top: 6px; font-size: 11px; font-weight: 700; text-align: left; padding-left: 4px; }
+      .td-prazo::after { font-size: 8px; }
+
+      /* Botão WhatsApp */
+      .cotas-table td.td-action { grid-column: 1 / -1; grid-row: 4; margin-top: 8px; padding: 0 !important; }
+      .btn-wpp { width: 100%; justify-content: center; padding: 10px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; display: flex; }
+
+      .whatsapp-fab { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.php" class="logo">
+        <img src="images/logo.png" alt="Prosperecon">
+      </a>
+      <div class="header__actions">
+        <a href="index.php" class="header__back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          Voltar ao site
+        </a>
+        <a href="https://wa.me/5511940466739?text=Olá! Sou corretor e quero saber mais sobre as cartas disponíveis." class="header__whatsapp" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          (11) 94046-6739
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- FILTROS -->
+  <div class="filters">
+    <div class="filters__inner">
+      <span class="filters__label">Filtrar:</span>
+      <button class="filter-pill active" data-filter="all">Todas</button>
+      <button class="filter-pill" data-filter="imovel">Imóvel</button>
+      <button class="filter-pill" data-filter="veiculo">Veículo</button>
+      <button class="filter-pill" data-filter="pesados">Pesados</button>
+      <button class="filter-pill" data-filter="servicos">Serviços</button>
+      <input type="text" class="filters__search" id="searchInput" placeholder="Buscar administradora...">
+      <span class="filters__count" id="cotaCount"></span>
+    </div>
+  </div>
+
+  <!-- TABELA -->
+  <div class="table-wrap">
+    <table class="cotas-table" id="cotasTable">
+      <thead>
+        <tr>
+          <th class="th-check"><input type="checkbox" class="row-check" id="checkAll" title="Selecionar todas"></th>
+          <th class="th-tipo">Categoria</th>
+          <th class="th-adm">Administradora</th>
+          <th>Valor do Crédito</th>
+          <th>Entrada</th>
+          <th>Parcela</th>
+          <th>Prazo</th>
+          <th class="th-action"></th>
+        </tr>
+      </thead>
+      <tbody id="cotasBody">
+        <tr id="loadingRow"><td colspan="8" style="text-align:center;padding:32px;color:#6B7280;">Carregando cartas...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EXTRAS -->
+  <div class="extras">
+    <div class="extras__grid">
+      <div class="extras__card">
+        <div class="extras__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Processo Seguro</h3>
+        <p>Todas as cartas são verificadas e a negociação é acompanhada do início ao fim.</p>
+      </div>
+      <div class="extras__card">
+        <div class="extras__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Mais de 40 Anos</h3>
+        <p>Tradição e experiência no mercado de consórcios desde 1982.</p>
+      </div>
+      <div class="extras__card">
+        <div class="extras__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Suporte Dedicado</h3>
+        <p>Atendimento direto pelo WhatsApp para corretores e parceiros.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer-simple">
+    &copy; 2026 Prosperecon Consórcios. Todos os direitos reservados.
+  </footer>
+
+  <!-- BARRA DE SELEÇÃO -->
+  <div class="selection-bar" id="selectionBar">
+    <div class="selection-bar__inner">
+      <div class="selection-bar__info">
+        <div class="selection-bar__stat">
+          <small>Selecionadas</small>
+          <strong id="selCount">0</strong>
+        </div>
+        <div class="selection-bar__stat">
+          <small>Crédito total</small>
+          <strong id="selCredito">R$ 0</strong>
+        </div>
+        <div class="selection-bar__stat">
+          <small>Entrada total</small>
+          <strong id="selEntrada">R$ 0</strong>
+        </div>
+        <div class="selection-bar__stat">
+          <small>Parcela total</small>
+          <strong id="selParcela">R$ 0</strong>
+        </div>
+      </div>
+      <div class="selection-bar__actions">
+        <button class="btn-clear" id="btnClear">Limpar</button>
+        <button class="btn-send-selected" id="btnSendSelected">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar via WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/5511940466739?text=Olá! Sou corretor e quero saber mais sobre as cartas disponíveis." class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    const SUPABASE_URL = 'https://lafowygavlydugtlwpwv.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxhZm93eWdhdmx5ZHVndGx3cHd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTA0NDEsImV4cCI6MjA5NzY4NjQ0MX0.Ygm8I8bPWNsl3lLydglX16Mzm_9jYlb6nGdyGjlC5m4';
+
+    const PHONE = '5511940466739';
+    const body = document.getElementById('cotasBody');
+    const selBar = document.getElementById('selectionBar');
+    const selCount = document.getElementById('selCount');
+    const selCredito = document.getElementById('selCredito');
+    const selEntrada = document.getElementById('selEntrada');
+    const selParcela = document.getElementById('selParcela');
+    const checkAll = document.getElementById('checkAll');
+    const searchInput = document.getElementById('searchInput');
+    const cotaCount = document.getElementById('cotaCount');
+
+    function fmt(n) { return 'R$ ' + Number(n).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+    const TIPO_LABEL = { imovel:'Imóvel', veiculo:'Veículo', pesados:'Pesados', servicos:'Serviços' };
+
+    const TIPO_MAP = {
+      imovel:'imovel', imoveis:'imovel',
+      veiculo:'veiculo', veiculos:'veiculo', carro:'veiculo', carros:'veiculo', auto:'veiculo',
+      pesados:'pesados', pesado:'pesados', frota:'pesados', caminhao:'pesados', caminhoes:'pesados',
+      servicos:'servicos', servico:'servicos'
+    };
+
+    function parseNum(v) { return Number(String(v).replace(/\./g, '').replace(',', '.')) || 0; }
+
+    function normalizeTipo(raw) {
+      const key = raw.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+      return TIPO_MAP[key] || key;
+    }
+
+    const TIPO_ICONS = {
+      imovel: '<span class="tipo-tag tipo-tag--imovel">Imóvel</span>',
+      veiculo: '<span class="tipo-tag tipo-tag--veiculo">Veículo</span>',
+      pesados: '<span class="tipo-tag tipo-tag--pesados">Pesados</span>',
+      servicos: '<span class="tipo-tag tipo-tag--servicos">Serviços</span>'
+    };
+
+    const WPP_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+
+    function renderRows(data) {
+      body.innerHTML = '';
+      data.forEach(row => {
+        const tipo = normalizeTipo(row.tipo);
+        const admin = row.administradora;
+        const credito = Number(row.credito) || 0;
+        const entrada = Number(row.entrada) || 0;
+        const parcela = Number(row.parcela) || 0;
+        const prazo = row.prazo || '';
+
+        const tr = document.createElement('tr');
+        tr.dataset.tipo = tipo;
+        tr.dataset.admin = admin;
+        tr.dataset.credito = credito;
+        tr.dataset.entrada = entrada;
+        tr.dataset.parcela = parcela;
+
+        tr.innerHTML = `
+          <td class="td-check"><input type="checkbox" class="row-check cota-check"></td>
+          <td class="td-tipo">${TIPO_ICONS[tipo] || ''}</td>
+          <td class="td-adm">${admin}</td>
+          <td class="td-credito">${fmt(credito)}</td>
+          <td class="td-entrada">${fmt(entrada)}</td>
+          <td class="td-parcela">${fmt(parcela)}</td>
+          <td class="td-prazo">${prazo}</td>
+          <td class="td-action"><a href="#" class="btn-wpp" data-wpp>${WPP_ICON} <span>Quero esta cota</span></a></td>
+        `;
+        body.appendChild(tr);
+      });
+      updateCount();
+    }
+
+    fetch(`${SUPABASE_URL}/rest/v1/cartas?select=*&order=created_at.desc`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    })
+      .then(r => r.json())
+      .then(data => renderRows(data))
+      .catch(() => {
+        body.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:32px;color:#cc0000;">Erro ao carregar cartas.</td></tr>';
+      });
+
+    body.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-wpp]');
+      if (!btn) return;
+      e.preventDefault();
+      const tr = btn.closest('tr');
+      const tipo = TIPO_LABEL[tr.dataset.tipo] || tr.dataset.tipo;
+      const admin = tr.dataset.admin;
+      const credito = fmt(tr.dataset.credito);
+      const entrada = fmt(tr.dataset.entrada);
+      const parcela = fmt(tr.dataset.parcela);
+      const prazo = tr.querySelector('.td-prazo').textContent;
+      const msg = `Olá! Tenho interesse na cota:\n• Tipo: ${tipo}\n• Adm: ${admin}\n• Crédito: ${credito}\n• Entrada: ${entrada}\n• Parcela: ${parcela}\n• Prazo: ${prazo} meses`;
+      window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+
+    function updateSelection() {
+      const checked = body.querySelectorAll('.cota-check:checked');
+      let credito = 0, entrada = 0, parcela = 0;
+      checked.forEach(cb => {
+        const tr = cb.closest('tr');
+        tr.classList.add('selected');
+        credito += Number(tr.dataset.credito) || 0;
+        entrada += Number(tr.dataset.entrada) || 0;
+        parcela += Number(tr.dataset.parcela) || 0;
+      });
+      body.querySelectorAll('.cota-check:not(:checked)').forEach(cb => cb.closest('tr').classList.remove('selected'));
+      selCount.textContent = checked.length;
+      selCredito.textContent = fmt(credito);
+      selEntrada.textContent = fmt(entrada);
+      selParcela.textContent = fmt(parcela);
+      selBar.classList.toggle('visible', checked.length > 0);
+      const fab = document.querySelector('.whatsapp-fab');
+      if (fab) fab.style.display = checked.length > 0 ? 'none' : 'flex';
+    }
+
+    body.addEventListener('change', function(e) {
+      if (e.target.classList.contains('cota-check')) updateSelection();
+    });
+
+    checkAll.addEventListener('change', function() {
+      body.querySelectorAll('tr:not([style*="display: none"]) .cota-check').forEach(cb => { cb.checked = this.checked; });
+      updateSelection();
+    });
+
+    document.getElementById('btnSendSelected').addEventListener('click', function() {
+      const checked = body.querySelectorAll('.cota-check:checked');
+      if (!checked.length) return;
+      let lines = ['Olá! Tenho interesse nas seguintes cotas:\n'];
+      checked.forEach((cb, i) => {
+        const tr = cb.closest('tr');
+        const tipo = TIPO_LABEL[tr.dataset.tipo] || tr.dataset.tipo;
+        const credito = fmt(tr.dataset.credito);
+        const entrada = fmt(tr.dataset.entrada);
+        const parcela = fmt(tr.dataset.parcela);
+        const prazo = tr.querySelector('.td-prazo').textContent;
+        lines.push(`${i+1}. ${tipo} — ${tr.dataset.admin} — ${credito} (Entrada: ${entrada} | Parcela: ${parcela} | ${prazo} meses)`);
+      });
+      window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+    });
+
+    document.getElementById('btnClear').addEventListener('click', function() {
+      body.querySelectorAll('.cota-check').forEach(cb => { cb.checked = false; });
+      checkAll.checked = false;
+      updateSelection();
+    });
+
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        body.querySelectorAll('tr').forEach(tr => {
+          tr.style.display = (filter === 'all' || tr.dataset.tipo === filter) ? '' : 'none';
+        });
+        checkAll.checked = false;
+        updateSelection();
+        updateCount();
+      });
+    });
+
+    searchInput.addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      body.querySelectorAll('tr').forEach(tr => {
+        tr.style.display = (tr.dataset.admin || '').toLowerCase().includes(q) ? '' : 'none';
+      });
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+      updateCount();
+    });
+
+    function updateCount() {
+      const visible = body.querySelectorAll('tr:not([style*="display: none"])').length;
+      const total = body.querySelectorAll('tr').length;
+      cotaCount.textContent = visible === total ? `${total} cotas` : `${visible} de ${total}`;
+    }
+  </script>
+</body>
+</html>
