@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Prosperecon - Cartas Contempladas
+*/
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

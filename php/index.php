@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Prosperecon - Pagina Inicial
+*/
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

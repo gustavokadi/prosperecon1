@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Prosperecon - Painel Admin
+*/
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

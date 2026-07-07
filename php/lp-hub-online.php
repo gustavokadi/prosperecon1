@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Prosperecon - Hub de Links
+*/
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
