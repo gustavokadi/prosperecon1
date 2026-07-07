@@ -239,6 +239,46 @@
       .panel-content { padding: 16px; }
       .carta-item { flex-wrap: wrap; }
     }
+
+    /* ── TABS ── */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-text);
+      background: var(--white);
+      border: 1.5px solid var(--gray);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .tab-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .tab-view { display: none; }
+    .tab-view.active { display: block; }
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--gray);
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 14px;
+      outline: none;
+      background: var(--cream);
+      transition: border-color .2s;
+      resize: vertical;
+      min-height: 90px;
+    }
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group.full { grid-column: 1 / -1; }
+    .post-item { flex-direction: column; align-items: stretch; gap: 6px; }
+    .post-item__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .post-item .carta-obs { font-style: normal; color: var(--gray-text); margin-top: 0; }
   </style>
 </head>
 <body>
@@ -257,11 +297,18 @@
   <!-- PAINEL -->
   <div class="panel" id="panel">
     <div class="panel-header">
-      <h1>Gerenciar Cartas</h1>
+      <h1>Painel Prosperecon</h1>
       <a href="cartas.php">Ver site &rarr;</a>
     </div>
 
     <div class="panel-content">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="cartas">Cartas</button>
+        <button class="tab-btn" data-tab="blog">Blog</button>
+      </div>
+
+      <!-- ABA CARTAS -->
+      <div class="tab-view active" id="tabCartas">
       <!-- FORMULÁRIO -->
       <div class="form-card">
         <h2>+ Adicionar carta</h2>
@@ -311,6 +358,39 @@
         <h2>Cartas ativas <span id="cartaCount"></span></h2>
         <div id="cartaList">
           <div class="empty-state">Carregando...</div>
+        </div>
+      </div>
+      </div>
+
+      <!-- ABA BLOG -->
+      <div class="tab-view" id="tabBlog">
+        <div class="form-card">
+          <h2>+ Adicionar post</h2>
+          <div class="form-group" style="margin-bottom:12px">
+            <label>Título</label>
+            <input type="text" id="pTitulo" placeholder="Ex: Como funciona a venda de consórcio contemplado">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label>Resumo (aparece no card do blog)</label>
+            <input type="text" id="pResumo" placeholder="Resumo curto de 1-2 linhas">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label>Imagem de capa (caminho dentro de images/, opcional)</label>
+            <input type="text" id="pImagem" placeholder="Ex: images/blog/post1.jpg">
+          </div>
+          <div class="form-group" style="margin-bottom:12px">
+            <label>Texto completo</label>
+            <textarea id="pConteudo" placeholder="Texto completo do post"></textarea>
+          </div>
+          <button class="btn-add" id="btnAddPost">Publicar post</button>
+          <div class="form-msg" id="postMsg"></div>
+        </div>
+
+        <div class="list-card">
+          <h2>Posts publicados <span id="postCount"></span></h2>
+          <div id="postList">
+            <div class="empty-state">Carregando...</div>
+          </div>
         </div>
       </div>
     </div>
@@ -443,6 +523,104 @@
           headers: headers()
         });
         loadCartas();
+      } catch {
+        alert('Erro ao excluir. Tente novamente.');
+      }
+    }
+
+    // ── TABS ──
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById(this.dataset.tab === 'blog' ? 'tabBlog' : 'tabCartas').classList.add('active');
+        if (this.dataset.tab === 'blog') loadPosts();
+      });
+    });
+
+    // ── CARREGAR POSTS ──
+    async function loadPosts() {
+      const list = document.getElementById('postList');
+      const count = document.getElementById('postCount');
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=*&order=created_at.desc`, { headers: headers() });
+        const data = await res.json();
+        count.textContent = `(${data.length})`;
+
+        if (!data.length) {
+          list.innerHTML = '<div class="empty-state">Nenhum post publicado ainda. Use o formulário acima para criar o primeiro.</div>';
+          return;
+        }
+
+        list.innerHTML = data.map(p => `
+          <div class="carta-item post-item" data-id="${p.id}">
+            <div class="post-item__top">
+              <strong>${p.title}</strong>
+              <button class="btn-delete" onclick="deletePost(${p.id})">Excluir</button>
+            </div>
+            <div class="carta-obs">${p.excerpt || ''}</div>
+          </div>
+        `).join('');
+      } catch (err) {
+        list.innerHTML = '<div class="empty-state" style="color:#DC2626;">Erro ao carregar posts.</div>';
+      }
+    }
+
+    // ── ADICIONAR POST ──
+    document.getElementById('btnAddPost').addEventListener('click', async function() {
+      const btn = this;
+      const msg = document.getElementById('postMsg');
+      const title = document.getElementById('pTitulo').value.trim();
+      const excerpt = document.getElementById('pResumo').value.trim();
+      const cover_image = document.getElementById('pImagem').value.trim();
+      const content = document.getElementById('pConteudo').value.trim();
+
+      if (!title || !content) {
+        msg.className = 'form-msg error';
+        msg.textContent = 'Preencha pelo menos título e texto completo.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Publicando...';
+      msg.className = 'form-msg';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/posts`, {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({ title, excerpt, cover_image: cover_image || null, content, published: true })
+        });
+
+        if (!res.ok) throw new Error();
+
+        msg.className = 'form-msg success';
+        msg.textContent = 'Post publicado com sucesso!';
+        document.getElementById('pTitulo').value = '';
+        document.getElementById('pResumo').value = '';
+        document.getElementById('pImagem').value = '';
+        document.getElementById('pConteudo').value = '';
+        loadPosts();
+      } catch {
+        msg.className = 'form-msg error';
+        msg.textContent = 'Erro ao publicar. Tente novamente.';
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Publicar post';
+      setTimeout(() => { msg.className = 'form-msg'; }, 4000);
+    });
+
+    // ── EXCLUIR POST ──
+    async function deletePost(id) {
+      if (!confirm('Tem certeza que quer excluir este post?')) return;
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/posts?id=eq.${id}`, {
+          method: 'DELETE',
+          headers: headers()
+        });
+        loadPosts();
       } catch {
         alert('Erro ao excluir. Tente novamente.');
       }
