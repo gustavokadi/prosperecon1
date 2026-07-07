@@ -3,6 +3,7 @@
 Template Name: Prosperecon - Cartas Contempladas
 */
 ?>
+<?php $prospereconBase = get_stylesheet_directory_uri(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -452,11 +453,11 @@ Template Name: Prosperecon - Cartas Contempladas
   <!-- HEADER -->
   <header class="header">
     <div class="header__inner">
-      <a href="index.php" class="logo">
-        <img src="images/logo.png" alt="Prosperecon">
+      <a href="https://prosperecon.com.br/home-v2/" class="logo">
+        <img src="<?php echo $prospereconBase; ?>/images/logo.png" alt="Prosperecon">
       </a>
       <div class="header__actions">
-        <a href="index.php" class="header__back">
+        <a href="https://prosperecon.com.br/home-v2/" class="header__back">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
           Voltar ao site
         </a>

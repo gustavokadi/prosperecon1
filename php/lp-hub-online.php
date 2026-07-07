@@ -3,6 +3,7 @@
 Template Name: Prosperecon - Hub de Links
 */
 ?>
+<?php $prospereconBase = get_stylesheet_directory_uri(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -235,7 +236,7 @@ Template Name: Prosperecon - Hub de Links
 
   <!-- LOGO -->
   <div class="logo-wrap">
-    <img src="images/logo.png" alt="Prosperecon">
+    <img src="<?php echo $prospereconBase; ?>/images/logo.png" alt="Prosperecon">
     <p class="logo-tagline">Prosperecon | Investidores em Consórcio</p>
   </div>
 

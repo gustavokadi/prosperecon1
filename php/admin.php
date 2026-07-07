@@ -3,6 +3,7 @@
 Template Name: Prosperecon - Painel Admin
 */
 ?>
+<?php $prospereconBase = get_stylesheet_directory_uri(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -303,7 +304,7 @@ Template Name: Prosperecon - Painel Admin
   <div class="panel" id="panel">
     <div class="panel-header">
       <h1>Painel Prosperecon</h1>
-      <a href="cartas.php">Ver site &rarr;</a>
+      <a href="https://prosperecon.com.br/cartas-v2/">Ver site &rarr;</a>
     </div>
 
     <div class="panel-content">
