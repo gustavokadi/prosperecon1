@@ -1,3 +1,7 @@
+// BLOQUEIA CLIQUE DIREITO E ARRASTAR IMAGEM
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('dragstart', e => e.preventDefault());
+
 // HAMBURGER MENU
 const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
@@ -34,39 +38,21 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// COUNTER ANIMATION
-const counters = document.querySelectorAll('.counter');
-let countersStarted = false;
+// REVEAL ON SCROLL (entrada em cascata)
+const revealGroups = new Map();
+document.querySelectorAll('.sobre__values, .steps').forEach(container => {
+  revealGroups.set(container, Array.from(container.querySelectorAll('.reveal')));
+});
 
-function animateCounters() {
-  if (countersStarted) return;
-  countersStarted = true;
-  counters.forEach(counter => {
-    const target = parseInt(counter.dataset.target);
-    const duration = 2000;
-    const start = performance.now();
-
-    function update(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      counter.textContent = Math.floor(target * ease);
-      if (progress < 1) requestAnimationFrame(update);
-      else counter.textContent = target;
-    }
-    requestAnimationFrame(update);
-  });
-}
-
-if (counters.length > 0) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounters();
-        observer.disconnect();
-      }
+const revealObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const items = revealGroups.get(entry.target) || [entry.target];
+    items.forEach((item, i) => {
+      setTimeout(() => item.classList.add('is-visible'), i * 180);
     });
-  }, { threshold: 0.3 });
+    obs.unobserve(entry.target);
+  });
+}, { threshold: 0.25 });
 
-  counters.forEach(c => observer.observe(c));
-}
+revealGroups.forEach((items, container) => revealObserver.observe(container));
